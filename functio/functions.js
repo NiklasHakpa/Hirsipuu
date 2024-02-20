@@ -1,6 +1,6 @@
 const input = document.querySelector('input')
 const output = document.querySelector('output')
-const span = document.querySelector('span')
+let vaarat = 0
 
 const words = [
     "programming",
@@ -16,7 +16,6 @@ const words = [
 ]
 let randomizedWord = ''
 let maskedword = ''
-
 const newGame = () => {
     const random = Math.floor(Math.random() * 10) + 1
     randomizedWord = words[random]
@@ -26,7 +25,7 @@ const newGame = () => {
 }
 
 const win = () => {
-    alert(`You have guessed right, the word is ${randomizedWord}.`)
+    alert(`You have guessed right, the word is ${randomizedWord}. You needed ${vaarat} guesses`)
     newGame()
 }
 
@@ -59,7 +58,10 @@ input.addEventListener('keypress', (e) => {
             }
         } else {
             alert("you guessed wrong!")
+            vaarat = vaarat + 1
+            document.querySelector('span').innerHTML = vaarat
         }
+        
         input.value=''
     }
 })
